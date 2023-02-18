@@ -356,6 +356,16 @@ prependpath () {
 # prependpath "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"
 # export PATH=$HOME/conda_software/bin${PATH:+:${PATH}}
 
+relink () {
+  set -e
+  original="$1" target="$2"
+  if [ -d "$target" ]; then
+    target="$target/${original##*/}"
+  mv "$original" "$target"
+  fi
+  ln -s "$target" "$original"
+}
+
 #### PATH
 ##############################
 
