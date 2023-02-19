@@ -153,7 +153,7 @@ alias jo="joshuto"
 # alias df="duf"
 # alias du="ncdu"
 alias path='tr ":" "\n" <<< $PATH'
-# alias top="htop"
+alias top="glances"
 # alias vim="nvim"
 alias nvimconf="nvim ~/.config/nvim/init.vim"
 alias vimconf="nvim ~/.vimrc"
@@ -267,7 +267,8 @@ unproxy() {
 }
 
 setsshproxy() {
-  host_ip=$(echo $SSH_CONNECTION | awk '{print $1}')
+  # host_ip=$(echo $SSH_CONNECTION | awk '{print $1}')
+  host_ip=$(echo $SSH_CONNECTION | choose 0)
   export all_proxy="http://$host_ip:7890"
   export http_proxy="http://$host_ip:7890"
   export https_proxy="http://$host_ip:7890"
